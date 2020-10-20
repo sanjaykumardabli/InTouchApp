@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="chip">
+  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
+</div>
+
+<div class="chip chip-md">
+  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-10.jpg" alt="Contact Person"> Anna Smith
+</div>
+
+<div class="chip chip-lg">
+  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="Contact Person"> Lara Lim
+</div>
+
+
+{% endblock content %}
+
+
+
+<div class="col-lg-2">
+        <a href="{% url 'register' %}" class="btn btn-outline-success">
+                                    <i class="fas fa-plus"></i> Add New
+                                </a>
+    </div>
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'todolist'%}"><img src = "{% static 'images/logo_black.png' %}" width="200" height="60" alt="Dj_project" </a>
+
+     </nav>

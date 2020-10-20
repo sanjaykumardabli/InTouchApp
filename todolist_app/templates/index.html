@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% block title %}
+<title>Wel Come</title>
+{% endblock title %}
+
+<div class = 'row'>
+    <div class="col-lg-10">
+        <form method= 'POST' action='{% url "search" %}'>
+            {% csrf_token %}
+          <i class="fas fa-search" aria-hidden="true"></i>
+          <input class="form-control form-control-sm ml-3 w-75" type="search" placeholder="Search" aria-label="Search" name="srch">
+        </form>
+    </div>
+
+    <div class="col-lg-2">
+        <a href="{% url 'register' %}" class="btn btn-outline-success">
+                                    <i class="fas fa-plus"></i> Add New</a>
+    </div>
+</div>
+</br>
+</br>
+</br>
+</br>
+<div class="row mt-6">
+    <div class="col-lg-5">
+        <h1 class="display-4">Contact List</h1>
+         <p class="lead font-italic"></p>
+        <hr class="my-4">
+        <table class="table table-borderless">
+            <thead class="border-bottom font-weight-bold">
+                <tr>
+                    <td class = 'col-lg-3'>First Name</td>
+                    <td class="col-1">Edit</td>
+                    <td class="col-1">Delete</td>
+
+
+                </tr>
+            </thead>
+
+            <tbody>
+            {% if allTasks %}
+                {% for obj in allTasks %}
+                    <tr>
+                        <td ><a href ="{% url 'update' obj.id %}">{{ forloop.counter }} | {{obj.firstName}}</a></td>
+                        <td><a href="{% url 'update' obj.id %}" class="btn text-secondary px-0">
+                            <i class="far fa-edit fa-lg"></i></a></td>
+                        <td >
+                            <form action="{% url 'delete_task' obj.id %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">
+                                <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                            </button>
+                            </form>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+
+        </nav>
+
+     </div>
+
+<div class="col-lg-1"></div>
+    <div class="col-lg-6">
+        <form action = '' method = 'POST', autocomplete = 'off'>
+         {%csrf_token%}
+          <div class="form-group">
+              <div class="row">
+                  <div class="col-lg-4"></div>
+                  <div class="col-lg-4">
+              <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-{{rand}}.jpg" class="avatar">
+                </div>
+                  </div>
+
+              <label>First Name</label>
+                    <input type="text" class="form-control col-lg-12" name = 'firstName'  placeholder="{{task_obj.firstName}}" value="{{task_obj.firstName}}" required>
+              <label>Last Name</label>
+                    <input type="text" class="form-control col-lg-12" name = 'lastName'  placeholder="{{task_obj.lastName}}" value="{{task_obj.lastName}}" required>
+
+                  <label>Display Name</label>
+                    <input type="text" class="form-control col-lg-12" name = 'displayName'  placeholder="{{task_obj.displayName}}" value="{{task_obj.displayName}}" required>
+              <label>Home Phone</label>
+                    <input type="text" class="form-control col-lg-12" name = 'homePhone'  placeholder="{{task_obj.homePhone}}" value="{{task_obj.homePhone}}" required>
+               <label>Email address</label>
+                    <input type="text" class="form-control" name = 'emailAddress' placeholder="{{task_obj.emailAddress}}" value="{{task_obj.emailAddress}}" required>
+              </br>
+              <div class="row">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+                    Submit</button>
+
+
+            </div>
+
+
+          </div>
+        </form>
+     </div>
+
+
+</div>
+</br>
+
+
+{% endblock content %}
